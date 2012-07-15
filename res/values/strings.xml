@@ -1,0 +1,13 @@
+<resources>
+
+    <string name="app_name">Jntuh Results</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_first">first</string>
+    <string name="heading">JNTUH Results</string>
+    <string name="connect">connect</string>
+    <string name="htn">"enter your HallTicket "</string>
+    <string name="submit">submit</string>
+    <string name="about">info</string>
+
+</resources>
