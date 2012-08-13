@@ -38,12 +38,6 @@ public class first extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.first);
-        
-         
-        
-        
-        
-        
     }
 
     @Override
@@ -70,13 +64,12 @@ public class first extends Activity {
     }
     
     public void aboutApp(View sdv){
-    	Toast.makeText(this, " JNTUH Results v0.1 \n CSE: Aurora's Institute of Technology", Toast.LENGTH_LONG).show();  
+    	Toast.makeText(this, " JNTUH Results v0.1 \n author:sharan", Toast.LENGTH_LONG).show();  
     }
     // methods
     public void connect() throws IOException{
 		Document doc = Jsoup.connect("http://jntuh.ac.in/results/").get();
 		Elements links = doc.select("a");
-	
 		List<String>  linklist  = new ArrayList<String>();
 		List<String> rlinklist = new ArrayList<String>();
 		// from links to sting list
