@@ -1,20 +1,15 @@
 package com.srn.jntuh.results;
 
-import java.io.IOException;
 import java.util.ArrayList;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.view.*;
 
 public class second extends Activity {
 	
@@ -44,22 +39,22 @@ public class second extends Activity {
 		
 		listview.setOnItemClickListener(new OnItemClickListener() {
 			
-			@Override
 			public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+	        	//to do stuff
+				getEcode getec = new getEcode(rhref1, position);
+				
+				getec.start();
 				try {
-					ecode = getecode(rhref1.get(position));
-					
-					Intent sintent = new Intent(second.this, third.class);
-					sintent.putExtra("ecode", ecode);
-					
-					startActivity(sintent);
-					
-					
-					
-					
-				} catch (IOException e) {
+					getec.join();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				ecode = getec.returnecode();
+				Intent sintent = new Intent(second.this, third.class);
+				sintent.putExtra("ecode", ecode);
+				startActivity(sintent);
+				
 			}
 		});
 		
@@ -69,13 +64,7 @@ public class second extends Activity {
 	
 	
 	//methods
-	public static String getecode(String s) throws IOException{
-		Document edoc = Jsoup.connect(s).get();
-		Elements elem = edoc.getElementsByAttributeValue("id", "ecode");
-		String eee = elem.attr("value").toString();
-		System.out.println(eee);
-		return eee;
-	}
+	
 
 	
 	

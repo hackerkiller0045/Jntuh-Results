@@ -10,13 +10,10 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -48,19 +45,22 @@ public class first extends Activity {
     
     
     public void goToSecond(View v){
-    	try {
-			connect();
-			Intent fintent = new Intent(first.this, second.class);
-			fintent.putStringArrayListExtra("rtext", rtext);
-			fintent.putStringArrayListExtra("rhref", rhref);
-			startActivity(fintent);
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-			TextView errortext = (TextView) findViewById(R.id.errorText);
-			errortext.setText("couldn't connect to jntu server check your network connection");
-			
-		}
+    	new Thread(new Runnable() {
+            public void run() {
+            	try {
+					connect();
+					Intent fintent = new Intent(first.this, second.class);
+					fintent.putStringArrayListExtra("rtext", rtext);
+					fintent.putStringArrayListExtra("rhref", rhref);
+					startActivity(fintent);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            }
+        }).start();
+    	
+		
     }
     
     public void aboutApp(View sdv){
